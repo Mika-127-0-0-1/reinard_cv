@@ -20,8 +20,8 @@ export default defineConfig({
   projectId,
   dataset,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
-  title: "My Portfolio",
-  subtitle: "Content Managment System",
+  title: "Reinhard Sound Engineering",
+  subtitle: "Portfolio Content Studio",
   icon: RocketIcon,
   schema,
   plugins: [

@@ -8,11 +8,18 @@
  */
 
 import { NextStudio } from 'next-sanity/studio'
+import type { Metadata } from 'next'
 import config from '../../../../sanity.config'
 
 export const dynamic = 'force-static'
 
-export { metadata, viewport } from 'next-sanity/studio'
+export { viewport } from 'next-sanity/studio'
+
+export const metadata: Metadata = {
+  title: 'Reinhard | Portfolio Studio',
+  description: "Manage Reinhard's sound engineering portfolio content.",
+  robots: { index: false, follow: false },
+}
 
 export default function StudioPage() {
   return <NextStudio config={config} />

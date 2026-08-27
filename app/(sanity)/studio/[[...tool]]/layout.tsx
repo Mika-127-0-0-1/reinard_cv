@@ -12,8 +12,8 @@ const _geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mika is Sane-ity Studio",
-  description: "My portfolio backend",
+  title: "Reinhard | Portfolio Studio",
+  description: "Content studio for Reinhard's sound engineering portfolio.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

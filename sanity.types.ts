@@ -569,6 +569,12 @@ export type Profile = {
   location?: string;
   availability?: "available" | "open" | "unavailable";
   socialLinks?: {
+    instagram?: string;
+    facebook?: string;
+    soundcloud?: string;
+    spotify?: string;
+    youtube?: string;
+    tiktok?: string;
     github?: string;
     linkedin?: string;
     website?: string;
@@ -861,6 +867,12 @@ export type CHAT_PROFILE_QUERYResult =
       location: string | null;
       availability: "available" | "open" | "unavailable" | null;
       socialLinks: {
+        instagram?: string;
+        facebook?: string;
+        soundcloud?: string;
+        spotify?: string;
+        youtube?: string;
+        tiktok?: string;
         github?: string;
         linkedin?: string;
         website?: string;
@@ -1427,6 +1439,12 @@ export type HERO_QUERYResult =
       location: string | null;
       availability: "available" | "open" | "unavailable" | null;
       socialLinks: {
+        instagram?: string;
+        facebook?: string;
+        soundcloud?: string;
+        spotify?: string;
+        youtube?: string;
+        tiktok?: string;
         github?: string;
         linkedin?: string;
         website?: string;

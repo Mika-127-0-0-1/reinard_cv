@@ -11,6 +11,7 @@ import {
   ServicesSection,
   SkillsSection,
   TestimonialsSection,
+  WorkEnvironmentSection,
 } from "./sections";
 import HeroSection from "./sections/HeroSection";
 import { sanityFetch } from "@/sanity/lib/live";
@@ -44,6 +45,7 @@ async function PortfolioContent() {
       <SiteSettingsClient settings={settings} />
 
       <HeroSection />
+      <WorkEnvironmentSection />
       <AboutSection />
       {showTestimonials && <TestimonialsSection />}
       <SkillsSection />

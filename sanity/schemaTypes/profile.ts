@@ -111,16 +111,22 @@ export default defineType({
     }),
     defineField({
       name: "socialLinks",
-      title: "Social Links",
+      title: "Social & Audio Platforms",
       type: "object",
+      description: "Profiles where employers and clients can discover Reinhard's work.",
       fields: [
-        { name: "github", title: "GitHub", type: "url" },
+        { name: "instagram", title: "Instagram", type: "url" },
+        { name: "facebook", title: "Facebook", type: "url" },
+        { name: "soundcloud", title: "SoundCloud", type: "url" },
+        { name: "spotify", title: "Spotify", type: "url" },
+        { name: "youtube", title: "YouTube", type: "url" },
+        { name: "tiktok", title: "TikTok", type: "url" },
         { name: "linkedin", title: "LinkedIn", type: "url" },
-        // { name: "twitter", title: "Twitter/X", type: "url" },
-        { name: "website", title: "Personal Website", type: "url" },
+        { name: "website", title: "Portfolio / Personal Website", type: "url" },
+        // Legacy fields remain available so existing saved links are not lost.
+        { name: "github", title: "GitHub (optional)", type: "url" },
         { name: "kaggle", title: "Kaggle", type: "url" },
         { name: "dailydev", title: "Daily.dev", type: "url" },
-        // { name: "youtube", title: "YouTube", type: "url" },
         { name: "stackoverflow", title: "Stack Overflow", type: "url" },
       ],
     }),
@@ -132,9 +138,9 @@ export default defineType({
     }),
     defineField({
       name: "stats",
-      title: "Profile Statistics",
+      title: "Professional Strengths / Statistics",
       type: "array",
-      description: "Key statistics to display on your about section",
+      description: "Editable strengths or measurable highlights shown beneath the work-environment gallery.",
       of: [
         {
           type: "object",

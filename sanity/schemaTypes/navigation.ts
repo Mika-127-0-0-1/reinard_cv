@@ -16,14 +16,14 @@ export default defineType({
       title: "Link URL",
       type: "string",
       description:
-        "Page anchor (e.g., '#about') or external URL (e.g., 'https://github.com/username')",
+        "Page anchor (e.g., '#about') or external URL (e.g., 'https://example.com')",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "icon",
       title: "Icon Name",
       type: "string",
-      description: "Tabler icon name (e.g., 'IconHome', 'IconBrandGithub')",
+      description: "Tabler icon name (e.g., 'IconHome', 'IconHeadphones')",
       validation: (Rule) => Rule.required(),
     }),
     defineField({

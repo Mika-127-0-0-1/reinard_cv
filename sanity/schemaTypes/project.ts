@@ -81,12 +81,6 @@ export default defineType({
       description: "Link to the live project",
     }),
     defineField({
-      name: "githubUrl",
-      title: "GitHub URL",
-      type: "url",
-      description: "Link to the GitHub repository",
-    }),
-    defineField({
       name: "featured",
       title: "Featured Project",
       type: "boolean",

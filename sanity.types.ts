@@ -454,7 +454,6 @@ export type Project = {
     | "game"
     | "other";
   liveUrl?: string;
-  githubUrl?: string;
   featured?: boolean;
   order?: number;
 };
@@ -511,10 +510,6 @@ export type Profile = {
     tiktok?: string;
     linkedin?: string;
     website?: string;
-    github?: string;
-    kaggle?: string;
-    dailydev?: string;
-    stackoverflow?: string;
   };
   yearsOfExperience?: number;
   stats?: Array<{
@@ -858,7 +853,7 @@ export type CERTIFICATIONS_QUERY_RESULT = Array<{
 
 // Source: components/sections/ContactSection.tsx
 // Variable: PROFILE_QUERY
-// Query: *[_id == "singleton-profile"][0]{  email,  phone,  location,  socialLinks}
+// Query: *[_id == "singleton-profile"][0]{  email,  phone,  location,  socialLinks{linkedin, website}}
 export type PROFILE_QUERY_RESULT =
   | {
       email: null;
@@ -883,18 +878,8 @@ export type PROFILE_QUERY_RESULT =
       phone: string | null;
       location: string | null;
       socialLinks: {
-        instagram?: string;
-        facebook?: string;
-        soundcloud?: string;
-        spotify?: string;
-        youtube?: string;
-        tiktok?: string;
-        linkedin?: string;
-        website?: string;
-        github?: string;
-        kaggle?: string;
-        dailydev?: string;
-        stackoverflow?: string;
+        linkedin: string | null;
+        website: string | null;
       } | null;
     }
   | null;
@@ -985,7 +970,7 @@ export type EXPERIENCE_QUERY_RESULT = Array<{
 
 // Source: components/sections/HeroSection.tsx
 // Variable: HERO_QUERY
-// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  headline,  headlineStaticText,  headlineAnimatedWords,  headlineAnimationDuration,  shortBio,  email,  phone,  location,  availability,  socialLinks,  yearsOfExperience,  profileImage}
+// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  headline,  headlineStaticText,  headlineAnimatedWords,  headlineAnimationDuration,  shortBio,  email,  phone,  location,  availability,  socialLinks{instagram, facebook, soundcloud, spotify, youtube, tiktok, linkedin, website},  yearsOfExperience,  profileImage}
 export type HERO_QUERY_RESULT =
   | {
       firstName: null;
@@ -1064,18 +1049,14 @@ export type HERO_QUERY_RESULT =
       location: string | null;
       availability: "available" | "open" | "unavailable" | null;
       socialLinks: {
-        instagram?: string;
-        facebook?: string;
-        soundcloud?: string;
-        spotify?: string;
-        youtube?: string;
-        tiktok?: string;
-        linkedin?: string;
-        website?: string;
-        github?: string;
-        kaggle?: string;
-        dailydev?: string;
-        stackoverflow?: string;
+        instagram: string | null;
+        facebook: string | null;
+        soundcloud: string | null;
+        spotify: string | null;
+        youtube: string | null;
+        tiktok: string | null;
+        linkedin: string | null;
+        website: string | null;
       } | null;
       yearsOfExperience: number | null;
       profileImage: {
@@ -1099,7 +1080,7 @@ export type CTA_QUERY_RESULT = {
 
 // Source: components/sections/ProjectsSection.tsx
 // Variable: PROJECTS_QUERY
-// Query: *[_type == "project" && featured == true] | order(order asc)[0...6]{  title,  slug,  tagline,  category,  liveUrl,  githubUrl,  coverImage,  technologies[]->{name, category, color}}
+// Query: *[_type == "project" && featured == true] | order(order asc)[0...6]{  title,  slug,  tagline,  category,  liveUrl,  coverImage,  technologies[]->{name, category, color}}
 export type PROJECTS_QUERY_RESULT = Array<{
   title: string | null;
   slug: Slug | null;
@@ -1118,7 +1099,6 @@ export type PROJECTS_QUERY_RESULT = Array<{
     | "web-app"
     | null;
   liveUrl: string | null;
-  githubUrl: string | null;
   coverImage: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -1349,12 +1329,12 @@ declare module "@sanity/client" {
     '*[_type == "achievement"] | order(date desc){\n  title,\n  type,\n  issuer,\n  date,\n  description,\n  image,\n  url,\n  featured,\n  order\n}': ACHIEVEMENTS_QUERY_RESULT;
     '*[_type == "blog"] | order(publishedAt desc){\n  title,\n  slug,\n  excerpt,\n  category,\n  tags,\n  publishedAt,\n  readTime,\n  featuredImage\n}': BLOG_QUERY_RESULT;
     '*[_type == "certification"] | order(issueDate desc){\n  name,\n  issuer,\n  issueDate,\n  expiryDate,\n  credentialId,\n  credentialUrl,\n  logo,\n  description,\n  skills[]->{name, category},\n  order\n}': CERTIFICATIONS_QUERY_RESULT;
-    '*[_id == "singleton-profile"][0]{\n  email,\n  phone,\n  location,\n  socialLinks\n}': PROFILE_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  email,\n  phone,\n  location,\n  socialLinks{linkedin, website}\n}': PROFILE_QUERY_RESULT;
     '*[_type == "education"] | order(endDate desc, startDate desc){\n  institution,\n  degree,\n  fieldOfStudy,\n  startDate,\n  endDate,\n  current,\n  gpa,\n  description,\n  achievements,\n  logo,\n  website,\n  order\n}': EDUCATION_QUERY_RESULT;
     '*[_type == "experience"] | order(startDate desc){\n  company,\n  position,\n  employmentType,\n  location,\n  startDate,\n  endDate,\n  current,\n  description,\n  responsibilities,\n  achievements,\n  technologies[]->{name, category},\n  companyLogo,\n  companyWebsite\n}': EXPERIENCE_QUERY_RESULT;
-    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  headline,\n  headlineStaticText,\n  headlineAnimatedWords,\n  headlineAnimationDuration,\n  shortBio,\n  email,\n  phone,\n  location,\n  availability,\n  socialLinks,\n  yearsOfExperience,\n  profileImage\n}': HERO_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  headline,\n  headlineStaticText,\n  headlineAnimatedWords,\n  headlineAnimationDuration,\n  shortBio,\n  email,\n  phone,\n  location,\n  availability,\n  socialLinks{instagram, facebook, soundcloud, spotify, youtube, tiktok, linkedin, website},\n  yearsOfExperience,\n  profileImage\n}': HERO_QUERY_RESULT;
     '*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{ctaText, ctaUrl}': CTA_QUERY_RESULT;
-    '*[_type == "project" && featured == true] | order(order asc)[0...6]{\n  title,\n  slug,\n  tagline,\n  category,\n  liveUrl,\n  githubUrl,\n  coverImage,\n  technologies[]->{name, category, color}\n}': PROJECTS_QUERY_RESULT;
+    '*[_type == "project" && featured == true] | order(order asc)[0...6]{\n  title,\n  slug,\n  tagline,\n  category,\n  liveUrl,\n  coverImage,\n  technologies[]->{name, category, color}\n}': PROJECTS_QUERY_RESULT;
     '*[_type == "service"] | order(order asc, _createdAt desc){\n  title,\n  slug,\n  icon,\n  shortDescription,\n  fullDescription,\n  features,\n  technologies[]->{name, category},\n  deliverables,\n  pricing,\n  timeline,\n  featured,\n  order\n}': SERVICES_QUERY_RESULT;
     '*[_type == "skill"] | order(category asc, order asc){\n  name,\n  category,\n  proficiency,\n  percentage,\n  yearsOfExperience,\n  color\n}': SKILLS_QUERY_RESULT;
     '*[_type == "testimonial" && featured == true] | order(order asc){\n  name,\n  position,\n  company,\n  testimonial,\n  rating,\n  date,\n  avatar,\n  companyLogo,\n  linkedinUrl\n}': TESTIMONIALS_QUERY_RESULT;

@@ -123,11 +123,6 @@ export default defineType({
         { name: "tiktok", title: "TikTok", type: "url" },
         { name: "linkedin", title: "LinkedIn", type: "url" },
         { name: "website", title: "Portfolio / Personal Website", type: "url" },
-        // Legacy fields remain available so existing saved links are not lost.
-        { name: "github", title: "GitHub (optional)", type: "url" },
-        { name: "kaggle", title: "Kaggle", type: "url" },
-        { name: "dailydev", title: "Daily.dev", type: "url" },
-        { name: "stackoverflow", title: "Stack Overflow", type: "url" },
       ],
     }),
     defineField({

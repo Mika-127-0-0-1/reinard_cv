@@ -7,7 +7,7 @@ const PROFILE_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   email,
   phone,
   location,
-  socialLinks
+  socialLinks{linkedin, website}
 }`);
 
 export async function ContactSection() {
@@ -16,6 +16,8 @@ export async function ContactSection() {
   if (!profile) {
     return null;
   }
+
+  const { linkedin, website } = profile.socialLinks ?? {};
 
   return (
     <section id="contact" className="py-20 px-6 pb-40 bg-muted/30">
@@ -90,25 +92,15 @@ export async function ContactSection() {
                 </div>
               )}
 
-              {profile.socialLinks && (
+              {(linkedin || website) && (
                 <div className="pt-6">
                   <h4 className="font-semibold mb-4 text-sm @md/info:text-base">
                     Follow Me
                   </h4>
                   <div className="flex flex-wrap gap-2 @md/info:gap-3">
-                    {/* {profile.socialLinks.github && (
+                    {linkedin && (
                       <Link
-                        href={profile.socialLinks.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1.5 @md/info:px-4 @md/info:py-2 rounded-lg border hover:bg-accent transition-colors text-xs @md/info:text-sm"
-                      >
-                        GitHub
-                      </Link>
-                    )} */}
-                    {profile.socialLinks?.linkedin && (
-                      <Link
-                        href={profile.socialLinks.linkedin}
+                        href={linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 @md/info:px-4 @md/info:py-2 rounded-lg border hover:bg-accent transition-colors text-xs @md/info:text-sm"
@@ -116,9 +108,9 @@ export async function ContactSection() {
                         LinkedIn
                       </Link>
                     )}
-                    {profile.socialLinks?.website && (
+                    {website && (
                       <Link
-                        href={profile.socialLinks.website}
+                        href={website}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 @md/info:px-4 @md/info:py-2 rounded-lg border hover:bg-accent transition-colors text-xs @md/info:text-sm"
@@ -126,16 +118,6 @@ export async function ContactSection() {
                         Website
                       </Link>
                     )}
-                    {/* {profile.socialLinks.youtube && (
-                      <Link
-                        href={profile.socialLinks.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-1.5 @md/info:px-4 @md/info:py-2 rounded-lg border hover:bg-accent transition-colors text-xs @md/info:text-sm"
-                      >
-                        YouTube
-                      </Link>
-                    )} */}
                   </div>
                 </div>
               )}

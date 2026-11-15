@@ -11,7 +11,6 @@ const PROJECTS_QUERY =
   tagline,
   category,
   liveUrl,
-  githubUrl,
   coverImage,
   technologies[]->{name, category, color}
 }`);
@@ -100,9 +99,8 @@ export async function ProjectsSection() {
                     </div>
                   )}
 
-                  {/* Actions */}
-                  <div className="flex flex-col @xs/card:flex-row gap-2 @xs/card:gap-3 pt-2">
-                    {project.liveUrl && (
+                  {project.liveUrl && (
+                    <div className="flex flex-col @xs/card:flex-row gap-2 @xs/card:gap-3 pt-2">
                       <Link
                         href={project.liveUrl}
                         target="_blank"
@@ -111,18 +109,8 @@ export async function ProjectsSection() {
                       >
                         Live Demo
                       </Link>
-                    )}
-                    {project.githubUrl && (
-                      <Link
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-3 py-2 @md/card:px-4 rounded-lg border hover:bg-accent transition-colors text-xs @md/card:text-sm text-center"
-                      >
-                        GitHub
-                      </Link>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

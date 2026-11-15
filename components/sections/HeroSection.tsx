@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowDown, CheckCircle2, MapPin, Radio, Send } from "lucide-react";
 import {
   IconBrandFacebook,
-  IconBrandGithub,
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandSoundcloud,
@@ -29,7 +28,7 @@ const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   phone,
   location,
   availability,
-  socialLinks,
+  socialLinks{instagram, facebook, soundcloud, spotify, youtube, tiktok, linkedin, website},
   yearsOfExperience,
   profileImage
 }`);
@@ -50,7 +49,6 @@ async function HeroSection() {
     { label: "TikTok", href: profile.socialLinks?.tiktok, icon: IconBrandTiktok },
     { label: "LinkedIn", href: profile.socialLinks?.linkedin, icon: IconBrandLinkedin },
     { label: "Website", href: profile.socialLinks?.website, icon: IconWorld },
-    { label: "GitHub", href: profile.socialLinks?.github, icon: IconBrandGithub },
   ].filter((item) => Boolean(item.href));
 
   return (

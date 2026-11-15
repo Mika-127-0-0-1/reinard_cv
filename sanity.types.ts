@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
 export type Navigation = {
   _id: string;
@@ -26,6 +28,13 @@ export type Navigation = {
   order?: number;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
 export type SiteSettings = {
   _id: string;
   _type: "siteSettings";
@@ -36,36 +45,21 @@ export type SiteSettings = {
   siteDescription?: string;
   siteKeywords?: Array<string>;
   siteLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
   favicon?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
   ogImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -79,12 +73,7 @@ export type SiteSettings = {
   heroHeadline?: string;
   heroSubheadline?: string;
   heroBackground?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -140,6 +129,13 @@ export type Contact = {
   notes?: string;
 };
 
+export type SkillReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "skill";
+};
+
 export type Service = {
   _id: string;
   _type: "service";
@@ -149,12 +145,7 @@ export type Service = {
   title?: string;
   slug?: Slug;
   icon?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -180,13 +171,11 @@ export type Service = {
     _key: string;
   }>;
   features?: Array<string>;
-  technologies?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "skill";
-  }>;
+  technologies?: Array<
+    {
+      _key: string;
+    } & SkillReference
+  >;
   deliverables?: Array<string>;
   pricing?: {
     startingPrice?: number;
@@ -214,12 +203,7 @@ export type Blog = {
   slug?: Slug;
   excerpt?: string;
   featuredImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -261,12 +245,7 @@ export type Achievement = {
   date?: string;
   description?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -290,25 +269,18 @@ export type Certification = {
   credentialId?: string;
   credentialUrl?: string;
   logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
   description?: string;
-  skills?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "skill";
-  }>;
+  skills?: Array<
+    {
+      _key: string;
+    } & SkillReference
+  >;
   order?: number;
 };
 
@@ -322,12 +294,7 @@ export type Testimonial = {
   position?: string;
   company?: string;
   avatar?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -339,12 +306,7 @@ export type Testimonial = {
   date?: string;
   linkedinUrl?: string;
   companyLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -370,12 +332,7 @@ export type Education = {
   description?: string;
   achievements?: Array<string>;
   logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -394,11 +351,7 @@ export type Experience = {
   company?: string;
   position?: string;
   employmentType?:
-    | "full-time"
-    | "part-time"
-    | "contract"
-    | "freelance"
-    | "internship";
+    "full-time" | "part-time" | "contract" | "freelance" | "internship";
   location?: string;
   startDate?: string;
   endDate?: string;
@@ -423,20 +376,13 @@ export type Experience = {
   }>;
   responsibilities?: Array<string>;
   achievements?: Array<string>;
-  technologies?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "skill";
-  }>;
+  technologies?: Array<
+    {
+      _key: string;
+    } & SkillReference
+  >;
   companyLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -483,25 +429,18 @@ export type Project = {
   slug?: Slug;
   tagline?: string;
   coverImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  technologies?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "skill";
-  }>;
+  technologies?: Array<
+    {
+      _key: string;
+    } & SkillReference
+  >;
   category?:
     | "web-app"
     | "mobile-app"
@@ -552,12 +491,7 @@ export type Profile = {
     _key: string;
   }>;
   profileImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -575,9 +509,9 @@ export type Profile = {
     spotify?: string;
     youtube?: string;
     tiktok?: string;
-    github?: string;
     linkedin?: string;
     website?: string;
+    github?: string;
     kaggle?: string;
     dailydev?: string;
     stackoverflow?: string;
@@ -623,6 +557,7 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
+  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
@@ -688,10 +623,12 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Navigation
+  | SanityImageAssetReference
   | SiteSettings
   | SanityImageCrop
   | SanityImageHotspot
   | Contact
+  | SkillReference
   | Service
   | Slug
   | Blog
@@ -711,328 +648,55 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./components/FloatingDock.tsx
+
+// Source: components/FloatingDock.tsx
 // Variable: NAVIGATION_QUERY
 // Query: *[_type == "navigation"] | order(order asc){  title,  href,  icon,  isExternal}
-export type NAVIGATION_QUERYResult = Array<{
+export type NAVIGATION_QUERY_RESULT = Array<{
   title: string | null;
   href: string | null;
   icon: string | null;
   isExternal: boolean | null;
 }>;
 
-// Source: ./components/chat/ChatWrapper.tsx
-// Variable: CHAT_PROFILE_QUERY
-// Query: *[_id == "singleton-profile"][0]{    _id,    _type,    _createdAt,    _updatedAt,    _rev,    firstName,    lastName,    headline,    shortBio,    email,    phone,    location,    availability,    socialLinks,    yearsOfExperience,    profileImage  }
-export type CHAT_PROFILE_QUERYResult =
-  | {
-      _id: "singleton-profile";
-      _type: "achievement";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "blog";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "certification";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "contact";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: string | null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "education";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "experience";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: string | null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "navigation";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "profile";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: string | null;
-      lastName: string | null;
-      headline: string | null;
-      shortBio: string | null;
-      email: string | null;
-      phone: string | null;
-      location: string | null;
-      availability: "available" | "open" | "unavailable" | null;
-      socialLinks: {
-        instagram?: string;
-        facebook?: string;
-        soundcloud?: string;
-        spotify?: string;
-        youtube?: string;
-        tiktok?: string;
-        github?: string;
-        linkedin?: string;
-        website?: string;
-        kaggle?: string;
-        dailydev?: string;
-        stackoverflow?: string;
-      } | null;
-      yearsOfExperience: number | null;
-      profileImage: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        _type: "image";
-      } | null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "project";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "sanity.fileAsset";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "sanity.imageAsset";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "service";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "siteSettings";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "skill";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: number | null;
-      profileImage: null;
-    }
-  | {
-      _id: "singleton-profile";
-      _type: "testimonial";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      firstName: null;
-      lastName: null;
-      headline: null;
-      shortBio: null;
-      email: null;
-      phone: null;
-      location: null;
-      availability: null;
-      socialLinks: null;
-      yearsOfExperience: null;
-      profileImage: null;
-    }
-  | null;
+// Source: components/PortfolioContent.tsx
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{  siteTitle,  siteDescription,  primaryColor,  secondaryColor,  accentColor,  showBlog,  showServices,  showTestimonials,  maintenanceMode,  favicon{asset->{url}},  footer{ text, copyrightText, links[]{title, url, _key} }}
+export type SITE_SETTINGS_QUERY_RESULT = {
+  siteTitle: string | null;
+  siteDescription: string | null;
+  primaryColor: string | null;
+  secondaryColor: string | null;
+  accentColor: string | null;
+  showBlog: boolean | null;
+  showServices: boolean | null;
+  showTestimonials: boolean | null;
+  maintenanceMode: boolean | null;
+  favicon: {
+    asset: {
+      url: string | null;
+    } | null;
+  } | null;
+  footer: {
+    text: string | null;
+    copyrightText: string | null;
+    links: Array<{
+      title: string | null;
+      url: string | null;
+      _key: string;
+    }> | null;
+  } | null;
+} | null;
 
-// Source: ./components/sections/AboutSection.tsx
+// Source: components/sections/AboutSection.tsx
 // Variable: ABOUT_QUERY
-// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  fullBio,  yearsOfExperience,  stats,  email,  phone,  location}
-export type ABOUT_QUERYResult =
+// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  fullBio,  yearsOfExperience,  email,  phone,  location}
+export type ABOUT_QUERY_RESULT =
   | {
       firstName: null;
       lastName: null;
       fullBio: null;
       yearsOfExperience: null;
-      stats: null;
       email: null;
       phone: null;
       location: null;
@@ -1042,7 +706,6 @@ export type ABOUT_QUERYResult =
       lastName: null;
       fullBio: null;
       yearsOfExperience: number | null;
-      stats: null;
       email: null;
       phone: null;
       location: null;
@@ -1052,7 +715,6 @@ export type ABOUT_QUERYResult =
       lastName: null;
       fullBio: null;
       yearsOfExperience: null;
-      stats: null;
       email: null;
       phone: null;
       location: string | null;
@@ -1062,7 +724,6 @@ export type ABOUT_QUERYResult =
       lastName: null;
       fullBio: null;
       yearsOfExperience: null;
-      stats: null;
       email: string | null;
       phone: null;
       location: null;
@@ -1078,14 +739,7 @@ export type ABOUT_QUERYResult =
           _key: string;
         }>;
         style?:
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "normal";
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -1097,21 +751,16 @@ export type ABOUT_QUERYResult =
         _key: string;
       }> | null;
       yearsOfExperience: number | null;
-      stats: Array<{
-        label?: string;
-        value?: string;
-        _key: string;
-      }> | null;
       email: string | null;
       phone: string | null;
       location: string | null;
     }
   | null;
 
-// Source: ./components/sections/AchievementsSection.tsx
+// Source: components/sections/AchievementsSection.tsx
 // Variable: ACHIEVEMENTS_QUERY
 // Query: *[_type == "achievement"] | order(date desc){  title,  type,  issuer,  date,  description,  image,  url,  featured,  order}
-export type ACHIEVEMENTS_QUERYResult = Array<{
+export type ACHIEVEMENTS_QUERY_RESULT = Array<{
   title: string | null;
   type:
     | "award"
@@ -1127,12 +776,7 @@ export type ACHIEVEMENTS_QUERYResult = Array<{
   date: string | null;
   description: string | null;
   image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1143,10 +787,10 @@ export type ACHIEVEMENTS_QUERYResult = Array<{
   order: number | null;
 }>;
 
-// Source: ./components/sections/BlogSection.tsx
+// Source: components/sections/BlogSection.tsx
 // Variable: BLOG_QUERY
 // Query: *[_type == "blog"] | order(publishedAt desc){  title,  slug,  excerpt,  category,  tags,  publishedAt,  readTime,  featuredImage}
-export type BLOG_QUERYResult = Array<{
+export type BLOG_QUERY_RESULT = Array<{
   title: string | null;
   slug: Slug | null;
   excerpt: string | null;
@@ -1165,12 +809,7 @@ export type BLOG_QUERYResult = Array<{
   publishedAt: string | null;
   readTime: number | null;
   featuredImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1179,10 +818,10 @@ export type BLOG_QUERYResult = Array<{
   } | null;
 }>;
 
-// Source: ./components/sections/CertificationsSection.tsx
+// Source: components/sections/CertificationsSection.tsx
 // Variable: CERTIFICATIONS_QUERY
 // Query: *[_type == "certification"] | order(issueDate desc){  name,  issuer,  issueDate,  expiryDate,  credentialId,  credentialUrl,  logo,  description,  skills[]->{name, category},  order}
-export type CERTIFICATIONS_QUERYResult = Array<{
+export type CERTIFICATIONS_QUERY_RESULT = Array<{
   name: string | null;
   issuer: string | null;
   issueDate: string | null;
@@ -1190,12 +829,7 @@ export type CERTIFICATIONS_QUERYResult = Array<{
   credentialId: string | null;
   credentialUrl: string | null;
   logo: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1222,10 +856,10 @@ export type CERTIFICATIONS_QUERYResult = Array<{
   order: number | null;
 }>;
 
-// Source: ./components/sections/ContactSection.tsx
+// Source: components/sections/ContactSection.tsx
 // Variable: PROFILE_QUERY
 // Query: *[_id == "singleton-profile"][0]{  email,  phone,  location,  socialLinks}
-export type PROFILE_QUERYResult =
+export type PROFILE_QUERY_RESULT =
   | {
       email: null;
       phone: null;
@@ -1249,9 +883,15 @@ export type PROFILE_QUERYResult =
       phone: string | null;
       location: string | null;
       socialLinks: {
-        github?: string;
+        instagram?: string;
+        facebook?: string;
+        soundcloud?: string;
+        spotify?: string;
+        youtube?: string;
+        tiktok?: string;
         linkedin?: string;
         website?: string;
+        github?: string;
         kaggle?: string;
         dailydev?: string;
         stackoverflow?: string;
@@ -1259,10 +899,10 @@ export type PROFILE_QUERYResult =
     }
   | null;
 
-// Source: ./components/sections/EducationSection.tsx
+// Source: components/sections/EducationSection.tsx
 // Variable: EDUCATION_QUERY
 // Query: *[_type == "education"] | order(endDate desc, startDate desc){  institution,  degree,  fieldOfStudy,  startDate,  endDate,  current,  gpa,  description,  achievements,  logo,  website,  order}
-export type EDUCATION_QUERYResult = Array<{
+export type EDUCATION_QUERY_RESULT = Array<{
   institution: string | null;
   degree: string | null;
   fieldOfStudy: string | null;
@@ -1273,12 +913,7 @@ export type EDUCATION_QUERYResult = Array<{
   description: string | null;
   achievements: Array<string> | null;
   logo: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1288,19 +923,14 @@ export type EDUCATION_QUERYResult = Array<{
   order: number | null;
 }>;
 
-// Source: ./components/sections/ExperienceSection.tsx
+// Source: components/sections/ExperienceSection.tsx
 // Variable: EXPERIENCE_QUERY
 // Query: *[_type == "experience"] | order(startDate desc){  company,  position,  employmentType,  location,  startDate,  endDate,  current,  description,  responsibilities,  achievements,  technologies[]->{name, category},  companyLogo,  companyWebsite}
-export type EXPERIENCE_QUERYResult = Array<{
+export type EXPERIENCE_QUERY_RESULT = Array<{
   company: string | null;
   position: string | null;
   employmentType:
-    | "contract"
-    | "freelance"
-    | "full-time"
-    | "internship"
-    | "part-time"
-    | null;
+    "contract" | "freelance" | "full-time" | "internship" | "part-time" | null;
   location: string | null;
   startDate: string | null;
   endDate: string | null;
@@ -1343,12 +973,7 @@ export type EXPERIENCE_QUERYResult = Array<{
       | null;
   }> | null;
   companyLogo: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1358,10 +983,10 @@ export type EXPERIENCE_QUERYResult = Array<{
   companyWebsite: string | null;
 }>;
 
-// Source: ./components/sections/HeroSection.tsx
+// Source: components/sections/HeroSection.tsx
 // Variable: HERO_QUERY
 // Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  headline,  headlineStaticText,  headlineAnimatedWords,  headlineAnimationDuration,  shortBio,  email,  phone,  location,  availability,  socialLinks,  yearsOfExperience,  profileImage}
-export type HERO_QUERYResult =
+export type HERO_QUERY_RESULT =
   | {
       firstName: null;
       lastName: null;
@@ -1445,21 +1070,16 @@ export type HERO_QUERYResult =
         spotify?: string;
         youtube?: string;
         tiktok?: string;
-        github?: string;
         linkedin?: string;
         website?: string;
+        github?: string;
         kaggle?: string;
         dailydev?: string;
         stackoverflow?: string;
       } | null;
       yearsOfExperience: number | null;
       profileImage: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
@@ -1469,10 +1089,18 @@ export type HERO_QUERYResult =
     }
   | null;
 
-// Source: ./components/sections/ProjectsSection.tsx
+// Source: components/sections/HeroSection.tsx
+// Variable: CTA_QUERY
+// Query: *[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{ctaText, ctaUrl}
+export type CTA_QUERY_RESULT = {
+  ctaText: string | null;
+  ctaUrl: string | null;
+} | null;
+
+// Source: components/sections/ProjectsSection.tsx
 // Variable: PROJECTS_QUERY
 // Query: *[_type == "project" && featured == true] | order(order asc)[0...6]{  title,  slug,  tagline,  category,  liveUrl,  githubUrl,  coverImage,  technologies[]->{name, category, color}}
-export type PROJECTS_QUERYResult = Array<{
+export type PROJECTS_QUERY_RESULT = Array<{
   title: string | null;
   slug: Slug | null;
   tagline: string | null;
@@ -1492,12 +1120,7 @@ export type PROJECTS_QUERYResult = Array<{
   liveUrl: string | null;
   githubUrl: string | null;
   coverImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1524,19 +1147,14 @@ export type PROJECTS_QUERYResult = Array<{
   }> | null;
 }>;
 
-// Source: ./components/sections/ServicesSection.tsx
+// Source: components/sections/ServicesSection.tsx
 // Variable: SERVICES_QUERY
 // Query: *[_type == "service"] | order(order asc, _createdAt desc){  title,  slug,  icon,  shortDescription,  fullDescription,  features,  technologies[]->{name, category},  deliverables,  pricing,  timeline,  featured,  order}
-export type SERVICES_QUERYResult = Array<{
+export type SERVICES_QUERY_RESULT = Array<{
   title: string | null;
   slug: Slug | null;
   icon: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1590,10 +1208,10 @@ export type SERVICES_QUERYResult = Array<{
   order: number | null;
 }>;
 
-// Source: ./components/sections/SkillsSection.tsx
+// Source: components/sections/SkillsSection.tsx
 // Variable: SKILLS_QUERY
 // Query: *[_type == "skill"] | order(category asc, order asc){  name,  category,  proficiency,  percentage,  yearsOfExperience,  color}
-export type SKILLS_QUERYResult = Array<{
+export type SKILLS_QUERY_RESULT = Array<{
   name: string | null;
   category:
     | "ai-ml"
@@ -1615,10 +1233,10 @@ export type SKILLS_QUERYResult = Array<{
   color: string | null;
 }>;
 
-// Source: ./components/sections/TestimonialsSection.tsx
+// Source: components/sections/TestimonialsSection.tsx
 // Variable: TESTIMONIALS_QUERY
 // Query: *[_type == "testimonial" && featured == true] | order(order asc){  name,  position,  company,  testimonial,  rating,  date,  avatar,  companyLogo,  linkedinUrl}
-export type TESTIMONIALS_QUERYResult = Array<{
+export type TESTIMONIALS_QUERY_RESULT = Array<{
   name: string | null;
   position: string | null;
   company: string | null;
@@ -1626,12 +1244,7 @@ export type TESTIMONIALS_QUERYResult = Array<{
   rating: number | null;
   date: string | null;
   avatar: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1639,12 +1252,7 @@ export type TESTIMONIALS_QUERYResult = Array<{
     _type: "image";
   } | null;
   companyLogo: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1653,23 +1261,103 @@ export type TESTIMONIALS_QUERYResult = Array<{
   linkedinUrl: string | null;
 }>;
 
+// Source: components/sections/WorkEnvironmentSection.tsx
+// Variable: STRENGTHS_QUERY
+// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  fullBio,  yearsOfExperience,  stats,  email,  phone,  location}
+export type STRENGTHS_QUERY_RESULT =
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: number | null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: string | null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: string | null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: string | null;
+      lastName: string | null;
+      fullBio: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+      yearsOfExperience: number | null;
+      stats: Array<{
+        label?: string;
+        value?: string;
+        _key: string;
+      }> | null;
+      email: string | null;
+      phone: string | null;
+      location: string | null;
+    }
+  | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "navigation"] | order(order asc){\n  title,\n  href,\n  icon,\n  isExternal\n}': NAVIGATION_QUERYResult;
-    '*[_id == "singleton-profile"][0]{\n    _id,\n    _type,\n    _createdAt,\n    _updatedAt,\n    _rev,\n    firstName,\n    lastName,\n    headline,\n    shortBio,\n    email,\n    phone,\n    location,\n    availability,\n    socialLinks,\n    yearsOfExperience,\n    profileImage\n  }': CHAT_PROFILE_QUERYResult;
-    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  stats,\n  email,\n  phone,\n  location\n}': ABOUT_QUERYResult;
-    '*[_type == "achievement"] | order(date desc){\n  title,\n  type,\n  issuer,\n  date,\n  description,\n  image,\n  url,\n  featured,\n  order\n}': ACHIEVEMENTS_QUERYResult;
-    '*[_type == "blog"] | order(publishedAt desc){\n  title,\n  slug,\n  excerpt,\n  category,\n  tags,\n  publishedAt,\n  readTime,\n  featuredImage\n}': BLOG_QUERYResult;
-    '*[_type == "certification"] | order(issueDate desc){\n  name,\n  issuer,\n  issueDate,\n  expiryDate,\n  credentialId,\n  credentialUrl,\n  logo,\n  description,\n  skills[]->{name, category},\n  order\n}': CERTIFICATIONS_QUERYResult;
-    '*[_id == "singleton-profile"][0]{\n  email,\n  phone,\n  location,\n  socialLinks\n}': PROFILE_QUERYResult;
-    '*[_type == "education"] | order(endDate desc, startDate desc){\n  institution,\n  degree,\n  fieldOfStudy,\n  startDate,\n  endDate,\n  current,\n  gpa,\n  description,\n  achievements,\n  logo,\n  website,\n  order\n}': EDUCATION_QUERYResult;
-    '*[_type == "experience"] | order(startDate desc){\n  company,\n  position,\n  employmentType,\n  location,\n  startDate,\n  endDate,\n  current,\n  description,\n  responsibilities,\n  achievements,\n  technologies[]->{name, category},\n  companyLogo,\n  companyWebsite\n}': EXPERIENCE_QUERYResult;
-    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  headline,\n  headlineStaticText,\n  headlineAnimatedWords,\n  headlineAnimationDuration,\n  shortBio,\n  email,\n  phone,\n  location,\n  availability,\n  socialLinks,\n  yearsOfExperience,\n  profileImage\n}': HERO_QUERYResult;
-    '*[_type == "project" && featured == true] | order(order asc)[0...6]{\n  title,\n  slug,\n  tagline,\n  category,\n  liveUrl,\n  githubUrl,\n  coverImage,\n  technologies[]->{name, category, color}\n}': PROJECTS_QUERYResult;
-    '*[_type == "service"] | order(order asc, _createdAt desc){\n  title,\n  slug,\n  icon,\n  shortDescription,\n  fullDescription,\n  features,\n  technologies[]->{name, category},\n  deliverables,\n  pricing,\n  timeline,\n  featured,\n  order\n}': SERVICES_QUERYResult;
-    '*[_type == "skill"] | order(category asc, order asc){\n  name,\n  category,\n  proficiency,\n  percentage,\n  yearsOfExperience,\n  color\n}': SKILLS_QUERYResult;
-    '*[_type == "testimonial" && featured == true] | order(order asc){\n  name,\n  position,\n  company,\n  testimonial,\n  rating,\n  date,\n  avatar,\n  companyLogo,\n  linkedinUrl\n}': TESTIMONIALS_QUERYResult;
+    '*[_type == "navigation"] | order(order asc){\n  title,\n  href,\n  icon,\n  isExternal\n}': NAVIGATION_QUERY_RESULT;
+    '*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{\n  siteTitle,\n  siteDescription,\n  primaryColor,\n  secondaryColor,\n  accentColor,\n  showBlog,\n  showServices,\n  showTestimonials,\n  maintenanceMode,\n  favicon{asset->{url}},\n  footer{ text, copyrightText, links[]{title, url, _key} }\n}': SITE_SETTINGS_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  email,\n  phone,\n  location\n}': ABOUT_QUERY_RESULT;
+    '*[_type == "achievement"] | order(date desc){\n  title,\n  type,\n  issuer,\n  date,\n  description,\n  image,\n  url,\n  featured,\n  order\n}': ACHIEVEMENTS_QUERY_RESULT;
+    '*[_type == "blog"] | order(publishedAt desc){\n  title,\n  slug,\n  excerpt,\n  category,\n  tags,\n  publishedAt,\n  readTime,\n  featuredImage\n}': BLOG_QUERY_RESULT;
+    '*[_type == "certification"] | order(issueDate desc){\n  name,\n  issuer,\n  issueDate,\n  expiryDate,\n  credentialId,\n  credentialUrl,\n  logo,\n  description,\n  skills[]->{name, category},\n  order\n}': CERTIFICATIONS_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  email,\n  phone,\n  location,\n  socialLinks\n}': PROFILE_QUERY_RESULT;
+    '*[_type == "education"] | order(endDate desc, startDate desc){\n  institution,\n  degree,\n  fieldOfStudy,\n  startDate,\n  endDate,\n  current,\n  gpa,\n  description,\n  achievements,\n  logo,\n  website,\n  order\n}': EDUCATION_QUERY_RESULT;
+    '*[_type == "experience"] | order(startDate desc){\n  company,\n  position,\n  employmentType,\n  location,\n  startDate,\n  endDate,\n  current,\n  description,\n  responsibilities,\n  achievements,\n  technologies[]->{name, category},\n  companyLogo,\n  companyWebsite\n}': EXPERIENCE_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  headline,\n  headlineStaticText,\n  headlineAnimatedWords,\n  headlineAnimationDuration,\n  shortBio,\n  email,\n  phone,\n  location,\n  availability,\n  socialLinks,\n  yearsOfExperience,\n  profileImage\n}': HERO_QUERY_RESULT;
+    '*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{ctaText, ctaUrl}': CTA_QUERY_RESULT;
+    '*[_type == "project" && featured == true] | order(order asc)[0...6]{\n  title,\n  slug,\n  tagline,\n  category,\n  liveUrl,\n  githubUrl,\n  coverImage,\n  technologies[]->{name, category, color}\n}': PROJECTS_QUERY_RESULT;
+    '*[_type == "service"] | order(order asc, _createdAt desc){\n  title,\n  slug,\n  icon,\n  shortDescription,\n  fullDescription,\n  features,\n  technologies[]->{name, category},\n  deliverables,\n  pricing,\n  timeline,\n  featured,\n  order\n}': SERVICES_QUERY_RESULT;
+    '*[_type == "skill"] | order(category asc, order asc){\n  name,\n  category,\n  proficiency,\n  percentage,\n  yearsOfExperience,\n  color\n}': SKILLS_QUERY_RESULT;
+    '*[_type == "testimonial" && featured == true] | order(order asc){\n  name,\n  position,\n  company,\n  testimonial,\n  rating,\n  date,\n  avatar,\n  companyLogo,\n  linkedinUrl\n}': TESTIMONIALS_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  stats,\n  email,\n  phone,\n  location\n}': STRENGTHS_QUERY_RESULT;
   }
 }

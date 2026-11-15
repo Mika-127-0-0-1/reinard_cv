@@ -33,14 +33,12 @@ const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
   yearsOfExperience,
   profileImage
 }`);
-const CTA_QUERY = defineQuery(`*[_id == "singleton-siteSettings"][0]{ctaText, ctaUrl}`);
+const CTA_QUERY = defineQuery(`*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{ctaText, ctaUrl}`);
 const availabilityLabels: Record<string, string> = { available: "Available for hire", open: "Open to opportunities", unavailable: "Currently unavailable" };
 
 async function HeroSection() {
   const { data: profile } = await sanityFetch({ query: HERO_QUERY });
-  const { data: ctaSettings } = (await sanityFetch({ query: CTA_QUERY })) as {
-    data: { ctaText?: string | null; ctaUrl?: string | null } | null;
-  };
+  const { data: ctaSettings } = await sanityFetch({ query: CTA_QUERY });
   if (!profile) return null;
   const availability = profile.availability ? availabilityLabels[profile.availability] || profile.availability : null;
   const socialLinks = [

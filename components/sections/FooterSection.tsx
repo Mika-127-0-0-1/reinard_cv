@@ -1,10 +1,9 @@
-import Link from "next/link";
-import type { SiteSettings } from "@/sanity.types";
+import type { SITE_SETTINGS_QUERY_RESULT } from "@/sanity.types";
 
 export default function FooterSection({
   footer,
 }: {
-  footer?: SiteSettings["footer"] | null;
+  footer?: NonNullable<SITE_SETTINGS_QUERY_RESULT>["footer"];
 }) {
   // If no footer configured, still render nothing (this keeps behavior stable)
   if (!footer) return null;
@@ -18,7 +17,7 @@ export default function FooterSection({
   const combinedLinks = [...links];
   for (const dl of defaultLinks) {
     if (!combinedLinks.some((l) => l.url === dl.url)) {
-      combinedLinks.push({ _key: dl.url, title: dl.title, url: dl.url } as any);
+      combinedLinks.push({ _key: dl.url, title: dl.title, url: dl.url });
     }
   }
 
@@ -36,8 +35,8 @@ export default function FooterSection({
           <nav className="flex flex-wrap gap-3">
             {combinedLinks.map((l) => (
               <a
-                key={(l as any)._key ?? l.url}
-                href={l.url}
+                key={l._key}
+                href={l.url ?? undefined}
                 target={l.url?.startsWith("http") ? "_blank" : undefined}
                 rel={l.url?.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="text-sm hover:underline text-primary"

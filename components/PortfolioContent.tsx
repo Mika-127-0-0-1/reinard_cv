@@ -18,7 +18,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import SiteSettingsClient from "./SiteSettingsClient";
 import FooterSection from "./sections/FooterSection";
 
-const SITE_SETTINGS_QUERY = defineQuery(`*[_id == "singleton-siteSettings"][0]{
+const SITE_SETTINGS_QUERY = defineQuery(`*[_type == "siteSettings" && _id == "singleton-siteSettings"][0]{
   siteTitle,
   siteDescription,
   primaryColor,
